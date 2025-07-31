@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.blog.impl.UserServiceImpl;
 import com.blog.payloads.ApiResponse;
 import com.blog.payloads.UserDto;
 import com.blog.services.UserService;
@@ -25,7 +24,7 @@ import jakarta.validation.Valid;
 public class UserController {
 
     @Autowired
-    private UserServiceImpl userService;
+    private UserService userService;
 
     // POST - CREATE THE USER
     @PostMapping("/save")

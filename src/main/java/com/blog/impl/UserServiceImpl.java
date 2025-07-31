@@ -46,7 +46,8 @@ public class UserServiceImpl implements UserService {
         Users user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "Id", id));
         user.setName(userDto.getName());
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        // Encode password before setting it
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setAbout(userDto.getAbout());
         Users updatedUser = userRepository.save(user);
         return modelMapper.map(updatedUser, UserDto.class);
@@ -78,7 +79,9 @@ public class UserServiceImpl implements UserService {
 		Users user=modelMapper.map(userDto,Users.class);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
-		Role role=roleRepository.findById(AppConstants.NORMAL_USER).get();
+		// Safe Optional handling to prevent NoSuchElementException
+		Role role=roleRepository.findById(AppConstants.NORMAL_USER)
+				.orElseThrow(() -> new ResourceNotFoundException("Role", "Id", AppConstants.NORMAL_USER));
 		
 		user.getRoles().add(role);
 		
