@@ -2,7 +2,6 @@ package com.blog.impl;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -40,7 +39,7 @@ public class PostServiceImpl implements PostService{
 	private CategoryRepository categoryRepository;
 
 	@Override
-	public PostDto createPost(PostDto postDto,long userId,long categoryId) {
+	public PostDto createPost(PostDto postDto,long categoryId,long userId) {
 		
 	 Users user=userRepository.findById(userId)
 			 .orElseThrow(()->new ResourceNotFoundException("user", "id", userId));

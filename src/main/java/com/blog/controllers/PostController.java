@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blog.config.AppConstants;
-import com.blog.impl.PostServiceImpl;
 import com.blog.payloads.ApiResponse;
 import com.blog.payloads.PostDto;
 import com.blog.payloads.PostResponse;
@@ -28,7 +27,7 @@ public class PostController {
 	
 	
 	@Autowired
-	private PostServiceImpl postService;
+	private PostService postService;
 	
 	@PostMapping("/save/user/{userId}/category/{categoryId}")
 	public ResponseEntity<PostDto> savePost

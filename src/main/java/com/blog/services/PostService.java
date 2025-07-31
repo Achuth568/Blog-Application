@@ -8,7 +8,7 @@ import com.blog.payloads.PostResponse;
 public interface PostService {
 	
 	// create post
-	PostDto createPost(PostDto postDto,long userId, long categoryId );
+	PostDto createPost(PostDto postDto,long categoryId, long userId );
 	
 	//update post
 	
@@ -24,7 +24,7 @@ public interface PostService {
 	void deletePost(long id);
 	
 	//get all posts by category
-	List<PostDto> getPostsByCategory(long categordId);
+	List<PostDto> getPostsByCategory(long categoryId);
 	
 	
 	//get all posts by user
@@ -33,7 +33,6 @@ public interface PostService {
 	//get post by search
 	List<PostDto> getPostBySearch(String keyword);
 	
-	
-	
+
 
 }
